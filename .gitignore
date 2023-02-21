@@ -1,0 +1,6 @@
+# Top level directories to ignore
+/node_modules
+/build
+/dist
+/logs
+
