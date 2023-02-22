@@ -1,11 +1,17 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import Home from './components/Home';
 
 // React component
 function App() {
   return (
-    <h1>
-      Hello world! I am using React
-    </h1>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
