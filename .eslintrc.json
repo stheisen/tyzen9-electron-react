@@ -6,6 +6,7 @@
     },
     "extends": [
         "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
         "airbnb"
     ],
     "overrides": [
@@ -18,12 +19,7 @@
     ],
     "rules": {
       "import/no-extraneous-dependencies": [
-        "error", 
-        {
-          "devDependencies": true, 
-          "optionalDependencies": true, 
-          "peerDependencies": true
-        }
+        "error", { "devDependencies": true } 
       ]
     }
 }

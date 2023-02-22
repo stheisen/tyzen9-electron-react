@@ -1,6 +1,6 @@
 {
-    "appId": "com.jamtracker.client",
-    "productName": "Jamtracker",
+    "appId": "com.tyzen9.electronReact",
+    "productName": "Tyzen9-electron-react",
     "directories": {
         "buildResources": "resources/icons"
     },

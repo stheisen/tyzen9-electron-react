@@ -1,23 +1,23 @@
 {
-  "name": "jamtracker",
-  "version": "0.0.2",
+  "name": "tyzen9-electron-react",
+  "version": "0.0.1",
   "private": true,
   "author": "Tyzen9 <steve@tyzen9.com>",
-  "description": "Elite Roller Derby Scoring",
+  "description": "Tyzen9 Electron & React Boilerplate",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stheisen/jamtracker-client"
+    "url": "https://github.com/stheisen/tyzen9-electron-react"
   },
   "keywords": [],
   "license": "ISC",
   "main": "app/electron/electron.js",
   "scripts": {
     "build": "webpack -c webpack.prod.js",
-    "r:start": "webpack-dev-server -c webpack.dev.js",
-    "e:start": "concurrently -k \"cross-env BROWSER=none npm run r:start\" \"wait-on http://localhost:3000 && electronmon .\"",
-    "electron:package:mac": "npm run build && electron-builder -m -c electron-builder.json",
-    "electron:package:win": "npm run build && electron-builder -w -c electron-builder.json",
-    "electron:package:linux": "npm run build && electron-builder -l -c electron-builder.json",
+    "start": "concurrently -k \"cross-env BROWSER=none npm run start:react\" \"wait-on http://localhost:3000 && electronmon .\"",
+    "start:react": "webpack-dev-server -c webpack.dev.js",
+    "pkg-mac": "npm run build && electron-builder -m -c electron-builder.json",
+    "pkg-win": "npm run build && electron-builder -w -c electron-builder.json",
+    "pkg-linux": "npm run build && electron-builder -l -c electron-builder.json",
     "test": "test"
   },
   "devDependencies": {
@@ -48,7 +48,7 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
     "winston": "^3.8.2",
     "winston-daily-rotate-file": "^4.7.1"
   },

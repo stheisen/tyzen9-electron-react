@@ -18,7 +18,7 @@ dotenv.config({
 // we need to initialize the logger after we have set the environment
 const logger = require('./logger');
 
-logger.verbose(`JamTracker is started in mode: ${process.env.NODE_ENV}`);
+logger.verbose(`Boilerplate is started in mode: ${process.env.NODE_ENV}`);
 logger.verbose(`User Data Directory: ${app.getPath('userData')}`);
 
 // Create the native browser window.
@@ -60,7 +60,7 @@ function createWindow() {
 // is ready to create the browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  logger.info(' -------------  JamTracker has started ------------- ');
+  logger.info(' -------------  Tyzen9 Boilerplate has started ------------- ');
   createWindow();
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
