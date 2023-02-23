@@ -11,4 +11,4 @@ These errors will appear in the console if the Brower has "Enable JavaScript Sou
 [40476:0221/210559.297:ERROR:CONSOLE(1)] "Request Network.loadNetworkResource failed. {"code":-32602,"message":"Unsupported URL scheme"}", source: devtools://devtools/bundled/core/protocol_client/protocol_client.js (1)
 ```
 To resolve this, Open Developer Tools, go to "Settings" (click the gear icon), then uncheck `[ ] Enable JavaScript Source maps` under the "Sources" settings.
-This that this disables this message, it really does not address the problem at the browser level
+This that this disables this message, it really does not address the problem at the browser level.
