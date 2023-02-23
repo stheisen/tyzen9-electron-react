@@ -1,6 +1,5 @@
-/* eslint-disable global-require */
 const dotenv = require('dotenv');
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, dialog, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -105,18 +104,22 @@ function createWindow() {
   // Confirm that the user wants to close the application
   mainWindow.on('close', function (e) {
     logger.verbose('Prompt the user if they are sure they want to exit.');
-    const choice = require('electron').dialog.showMessageBox(
-      this,
-      {
-        type: 'question',
-        buttons: ['Yes', 'No'],
-        title: 'Confirm',
-        message: 'Are you sure you want to quit?',
-      },
-    );
-    if (choice === 1) {
-      e.preventDefault();
-    }
+    e.preventDefault();
+    dialog.showMessageBox({
+      type: 'warning',
+      buttons: ['Cancel', 'Exit'],
+      noLink: true,
+      title: 'Warning',
+      detail: 'Are you sure you want to exit?'
+    }).then(({ response, checkboxChecked }) => {
+      console.log(`response: ${response}`)
+      if (response) {
+        mainWindow.destroy();
+        if (process.platform !== "darwin") {
+          app.quit();
+        }
+      }
+    });
   });
 }
 
