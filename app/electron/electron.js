@@ -1,8 +1,10 @@
+/* eslint-disable global-require */
 const dotenv = require('dotenv');
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const url = require('url');
 
+const isMac = process.platform === 'darwin';
 const port = 3000; // Hardcoded; needs to match webpack.dev.js
 const selfHost = `http://localhost:${port}`;
 
@@ -20,6 +22,48 @@ const logger = require('./logger');
 
 logger.verbose(`Boilerplate is started in mode: ${process.env.NODE_ENV}`);
 logger.verbose(`User Data Directory: ${app.getPath('userData')}`);
+
+function buildMenu() {
+  // See: https://www.electronjs.org/docs/latest/api/menu for details
+  const menuTemplate = [
+    {
+      label: 'File',
+      submenu: [
+        isMac ? { role: 'close' } : { role: 'quit' },
+      ],
+    },
+    {
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forceReload' },
+        { type: 'separator' },
+        { role: 'resetZoom' },
+        { role: 'zoomIn' },
+        { role: 'zoomOut' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' },
+      ],
+    },
+    {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click: async () => {
+            // eslint-disable-next-line global-require
+            const { shell } = require('electron');
+            await shell.openExternal('https://github.com/stheisen/tyzen9-electron-react');
+          },
+        },
+        { type: 'separator' },
+        { role: 'toggleDevTools' },
+      ],
+    },
+  ];
+
+  Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
+}
 
 // Create the native browser window.
 function createWindow() {
@@ -50,10 +94,30 @@ function createWindow() {
   // Load the content into the created window
   mainWindow.loadURL(appURL);
 
+  // Build the custom menu to display
+  buildMenu(mainWindow);
+
   // Automatically open the DevTools in development mode.
   if (!app.isPackaged) {
     mainWindow.webContents.openDevTools();
   }
+
+  // Confirm that the user wants to close the application
+  mainWindow.on('close', function (e) {
+    logger.verbose('Prompt the user if they are sure they want to exit.');
+    const choice = require('electron').dialog.showMessageBox(
+      this,
+      {
+        type: 'question',
+        buttons: ['Yes', 'No'],
+        title: 'Confirm',
+        message: 'Are you sure you want to quit?',
+      },
+    );
+    if (choice === 1) {
+      e.preventDefault();
+    }
+  });
 }
 
 // This method will be called when Electron has finished its initialization and
@@ -69,13 +133,4 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
-});
-
-// Quit when all windows are closed, except on macOS.
-// There, it's common for applications and their menu bar to stay active until
-// the user quits  explicitly with Cmd + Q.
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
 });
