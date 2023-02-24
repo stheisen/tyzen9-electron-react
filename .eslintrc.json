@@ -25,6 +25,9 @@
         "ImportDeclaration": "never"
         }
       ],
-      "allowTernary": true
+      "no-unused-expressions": ["error", { 
+        "allowTernary": true 
+        }
+      ]
     }
 }
