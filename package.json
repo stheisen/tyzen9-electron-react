@@ -13,8 +13,8 @@
   "main": "app/electron/electron.js",
   "scripts": {
     "build": "webpack -c webpack.prod.js",
-    "start": "concurrently -k \"cross-env BROWSER=none npm run start:react\" \"wait-on http://localhost:3000 && electronmon .\"",
-    "start:react": "webpack-dev-server -c webpack.dev.js",
+    "dev": "concurrently -k \"cross-env BROWSER=none npm run dev:react\" \"wait-on http://localhost:3000 && electronmon .\"",
+    "dev:react": "webpack-dev-server -c webpack.dev.js",
     "pkg-mac": "npm run build && electron-builder -m -c electron-builder.json",
     "pkg-win": "npm run build && electron-builder -w -c electron-builder.json",
     "pkg-linux": "npm run build && electron-builder -l -c electron-builder.json",

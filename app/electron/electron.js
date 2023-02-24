@@ -1,8 +1,10 @@
 const dotenv = require('dotenv');
-const { app, dialog, BrowserWindow, Menu } = require('electron');
+const { app, dialog, BrowserWindow, Menu, Tray } = require('electron');
 const path = require('path');
 const url = require('url');
 
+
+const startupDate = new Date();
 const isMac = process.platform === 'darwin';
 const port = 3000; // Hardcoded; needs to match webpack.dev.js
 const selfHost = `http://localhost:${port}`;
@@ -28,7 +30,7 @@ function buildMenu() {
     {
       label: 'File',
       submenu: [
-        isMac ? { role: 'close' } : { role: 'quit' },
+        { role: 'quit' },
       ],
     },
     {
@@ -62,6 +64,25 @@ function buildMenu() {
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(menuTemplate));
+}
+
+// Create a system tray icon and menu system
+function buildTrayMenu() {
+  const tray = new Tray(path.resolve(__dirname, 'icon.ico'));
+  const contextMenu = Menu.buildFromTemplate([
+    { label: 'Exit', click() { closeApplication() } },
+    { type: 'separator' },
+    { label: 'Running Since: ' + startupDate.toLocaleString() },
+  ]);
+  // Activate the tray icon
+  tray.setToolTip('Tyzen9-Electron-React');
+  tray.setContextMenu(contextMenu);
+
+  return tray;
+}
+
+function closeApplication(){
+  app.quit();
 }
 
 // Create the native browser window.
@@ -102,7 +123,7 @@ function createWindow() {
   }
 
   // Confirm that the user wants to close the application
-  mainWindow.on('close', function (e) {
+  mainWindow.on('close', (e) => {
     logger.verbose('Prompt the user if they are sure they want to exit.');
     e.preventDefault();
     dialog.showMessageBox({
@@ -110,12 +131,11 @@ function createWindow() {
       buttons: ['Cancel', 'Exit'],
       noLink: true,
       title: 'Warning',
-      detail: 'Are you sure you want to exit?'
-    }).then(({ response, checkboxChecked }) => {
-      console.log(`response: ${response}`)
+      detail: 'Are you sure you want to exit?',
+    }).then(({ response }) => {
       if (response) {
         mainWindow.destroy();
-        if (process.platform !== "darwin") {
+        if (isMac) {
           app.quit();
         }
       }
@@ -128,6 +148,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   logger.info(' -------------  Tyzen9 Boilerplate has started ------------- ');
+  buildTrayMenu();
   createWindow();
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the

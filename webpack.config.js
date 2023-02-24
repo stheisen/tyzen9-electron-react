@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: ['./app/src/Index.jsx'],
+  entry: ['./app/src/index.jsx'],
   // Specifies where the app will run
   target: 'web',
   // This is where Webpack will put it's files after bundling and we specify the path and the file
