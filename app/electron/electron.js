@@ -3,9 +3,9 @@ const { app, dialog, BrowserWindow, Menu, Tray } = require('electron');
 const path = require('path');
 const url = require('url');
 
-
 const startupDate = new Date();
 const isMac = process.platform === 'darwin';
+const isLinux = process.platform === 'linux';
 const port = 3000; // Hardcoded; needs to match webpack.dev.js
 const selfHost = `http://localhost:${port}`;
 
@@ -21,8 +21,13 @@ dotenv.config({
 // we need to initialize the logger after we have set the environment
 const logger = require('./logger');
 
-logger.verbose(`Boilerplate is started in mode: ${process.env.NODE_ENV}`);
+logger.info(' -------------  Tyzen9 Boilerplate has started ------------- ');
+logger.verbose(`Boilerplate is started in mode: ${process.env.NODE_ENV} on platform ${process.platform}`);
 logger.verbose(`User Data Directory: ${app.getPath('userData')}`);
+
+function closeApplication() {
+  app.quit();
+}
 
 function buildMenu() {
   // See: https://www.electronjs.org/docs/latest/api/menu for details
@@ -68,21 +73,23 @@ function buildMenu() {
 
 // Create a system tray icon and menu system
 function buildTrayMenu() {
-  const tray = new Tray(path.resolve(__dirname, 'icon.ico'));
+  let tray;
+  if (isLinux) {
+    tray = new Tray(path.resolve(__dirname, 'icon.png'));
+  } else {
+    tray = new Tray(path.resolve(__dirname, 'icon.ico'));
+  }
+
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Exit', click() { closeApplication() } },
+    { label: 'Exit', click() { closeApplication(); } },
     { type: 'separator' },
-    { label: 'Running Since: ' + startupDate.toLocaleString() },
+    { label: `Running Since: ${startupDate.toLocaleString()}` },
   ]);
   // Activate the tray icon
   tray.setToolTip('Tyzen9-Electron-React');
   tray.setContextMenu(contextMenu);
 
   return tray;
-}
-
-function closeApplication(){
-  app.quit();
 }
 
 // Create the native browser window.
@@ -147,7 +154,6 @@ function createWindow() {
 // is ready to create the browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  logger.info(' -------------  Tyzen9 Boilerplate has started ------------- ');
   buildTrayMenu();
   createWindow();
   app.on('activate', () => {
