@@ -12,3 +12,13 @@ These errors will appear in the console if the Brower has "Enable JavaScript Sou
 ```
 To resolve this, Open Developer Tools, go to "Settings" (click the gear icon), then uncheck `[ ] Enable JavaScript Source maps` under the "Sources" settings.
 This that this disables this message, it really does not address the problem at the browser level.
+
+# Linux Questions
+Electron-builder fails, and outputs this message
+```
+"Need executable 'ar' to convert dir to deb"
+```
+To resolve this, install binutils
+`
+$ sudo apt-get install binutils
+`
