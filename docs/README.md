@@ -1,22 +1,24 @@
 # Project Structure
 ```
 tyzen9-electron-react/
-    build/                  -- Webpack's output directory
-    dist/                   -- Electron-Builder working directory
-    docs/                   -- Project documentation
-    node_modules/           -- NODE required modules
-    resources/              -- Static content (images/fonts)
+    build/                      -- Webpack's output directory
+    dist/                       -- Electron-Builder working directory
+    docs/                       -- Project documentation
+    node_modules/               -- NODE required modules
+    resources/                  -- Static content (images/fonts)
     app/                    
-      electron/             -- Electron launcher, environment, and logging configuration
-      src/                  -- React entry point [index.js] and React compoments (JavaScript EMS)
-      index.html            -- Browser entry point
-    .eslintrc.json          -- ESLint configuration
-    .bablerc                -- Bable configuration
+      electron/                 -- Electron launcher, environment, and logging configuration
+      src/                      -- React entry point [index.js] and React compoments (JavaScript EMS)
+      index.html                -- Browser entry point
+    .eslintrc.json              -- ESLint configuration
+    .bablerc                    -- Bable configuration
     .gitignore
+    electron-builder.json       -- Electron builder config for Windows and MAC
+    electron-builder.linux.json -- Electron builder config for Linux (handles packaged icons differently)
     package.json
-    webpack.config.js       -- Common Webpack config imported by other configurations
-    webpack.dev.js          -- Development build
-    webpack.prod.js         -- Production (packaged) build
+    webpack.config.js           -- Common Webpack config imported by other configurations
+    webpack.dev.js              -- Development build
+    webpack.prod.js             -- Production (packaged) build
 
 ```
 
