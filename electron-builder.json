@@ -2,7 +2,8 @@
     "appId": "com.tyzen9.electronReact",
     "productName": "Tyzen9-electron-react",
     "directories": {
-        "buildResources": "resources/icons"
+        "buildResources": "resources/icons",
+        "output": "dist"
     },
     "files": [
         "build/**/*",
@@ -16,6 +17,8 @@
         "target": "nsis"
     },
     "linux": {
-        "target": "deb"
+        "target": "deb",
+        "category": "Utility",
+        "synopsis": "Boilerplate application to demonstrate a packaged React application using Electron."
     }
 }

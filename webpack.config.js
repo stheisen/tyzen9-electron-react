@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  stats: 'normal', // options here: https://webpack.js.org/configuration/stats/pki-win
   entry: ['./app/src/index.jsx'],
   // Specifies where the app will run
   target: 'web',
