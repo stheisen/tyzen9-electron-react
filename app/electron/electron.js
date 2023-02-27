@@ -142,7 +142,7 @@ function createWindow() {
     }).then(({ response }) => {
       if (response) {
         mainWindow.destroy();
-        if (isMac) {
+        if (!isMac) {
           app.quit();
         }
       }
