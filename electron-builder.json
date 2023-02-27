@@ -8,11 +8,7 @@
     "files": [
         "build/**/*",
         "app/electron/**/*",
-        "node_modules/**/*",
-        {
-            "from": "resources/icons",
-            "to": "build"
-        }
+        "node_modules/**/*"
     ],
     "mac": {
         "target": "dmg"
