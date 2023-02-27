@@ -2,8 +2,8 @@
 
 This Electron React Boilerplate 
 
-# Common Questions
-## "Network.loadNetworkResource failed." Errors
+## Common Questions
+### "Network.loadNetworkResource failed." Errors
 These errors will appear in the console if the Brower has "Enable JavaScript Source Maps" enabled.
 ```
 [40476:0221/210559.296:ERROR:CONSOLE(1)] "Request Network.loadNetworkResource failed. {"code":-32602,"message":"Unsupported URL scheme"}", source: devtools://devtools/bundled/core/protocol_client/protocol_client.js (1)
