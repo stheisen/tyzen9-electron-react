@@ -59,10 +59,12 @@ module.exports = {
     ],
   },
   plugins: [
+    // This copies the icon.png file into the build/icons directory for supporting Linux
+    // Tried doing this in the electron-builder config but this would not work for some reason
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, 'resources/icons'),
-          to: path.resolve(__dirname, 'build/icons') },
+        { from: path.resolve(__dirname, 'resources/icons/icon.png'),
+          to: path.resolve(__dirname, 'build/icons/icon.png') },
       ],
     }),
   ],
