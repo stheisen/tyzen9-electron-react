@@ -4,12 +4,7 @@
     "files": [
         "build/**/*",
         "app/electron/**/*",
-        "node_modules/**/*",
-        {
-            "from": "resources/icons",
-            "to": "build/icons",
-            "filter": ["**/*.{png}"]
-        }
+        "node_modules/**/*"
     ],
     "linux": {
         "target": "deb",
