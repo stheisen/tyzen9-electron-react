@@ -11,7 +11,7 @@
         "node_modules/**/*",
         {
             "from": "resources/icons",
-            "to": "build/icons"
+            "to": "build"
         }
     ],
     "mac": {
