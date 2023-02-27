@@ -20,7 +20,7 @@ This that this disables this message, it really does not address the problem at 
 ```
 To resolve this, install binutils
 ```
-$ sudo apt-get install binutils:
+:~$ sudo apt-get install binutils:
 ```
 
 ### Why and what is going on with Linux Packaged icons?
