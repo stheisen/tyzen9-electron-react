@@ -19,8 +19,9 @@ This that this disables this message, it really does not address the problem at 
 "Need executable 'ar' to convert dir to deb"
 ```
 To resolve this, install binutils
-`
-$ sudo apt-get install binutils
-`
-2. Why and what is going on with Linux Packaged icons?
+```
+$ sudo apt-get install binutils:
+```
+
+### Why and what is going on with Linux Packaged icons?
 When packaging electron, the linux build process rejects the `buildResources` configuration option embraced by Windows and MAC.  As a matter of fact, it had to be removed all together to get Linux to generate the packaged icon - this is why there are two seperate electron-builder config files. Furthermore, Linux builds would not accept icons placed in the `build/icons` folder if placed there AFTER webpack ran.  The only way to get Linux to recognize the package icon is to have webpack place the `resoures/icons/icon.png` file into the `build/icons` folder BEFORE electron-builder runs.  This explains why `webpack.config.js` is using the `copy-webpack-plugin`.
