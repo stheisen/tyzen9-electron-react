@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   stats: 'normal', // options here: https://webpack.js.org/configuration/stats/pki-win
@@ -57,4 +58,12 @@ module.exports = {
     },
     ],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'resources/icons'),
+          to: path.resolve(__dirname, 'build/icons') },
+      ],
+    }),
+  ],
 };
