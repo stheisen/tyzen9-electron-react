@@ -1,5 +1,5 @@
 const dotenv = require('dotenv');
-const { app, dialog, BrowserWindow, Menu, Tray } = require('electron');
+const { app, dialog, BrowserWindow, Menu, Tray, shell } = require('electron');
 const path = require('path');
 const url = require('url');
 
@@ -148,6 +148,14 @@ function createWindow() {
       }
     });
   });
+
+
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    logger.verbose(`Open link in external default browser: {url}`);
+    shell.openExternal(url);
+    return { action: 'deny' };
+  });
+  
 }
 
 // This method will be called when Electron has finished its initialization and

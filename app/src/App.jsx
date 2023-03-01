@@ -2,7 +2,9 @@ import React from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { HashRouter, Route, Routes } from 'react-router-dom';
 
-import Home from './components/Home';
+import Home from './pages/Home';
+import Github from './pages/Github'
+import Layout from './pages/Layout';
 
 // React component
 function App() {
@@ -10,7 +12,10 @@ function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="github" element={<Github />} />
+        </Route>
       </Routes>
     </HashRouter>
   );
