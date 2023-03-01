@@ -14,7 +14,7 @@ Please see this [Documentation](./docs/README.md) for specifics on:
 
 ## TODO
 
-:warning: Get my hands on a MAC to validate that MAC builds function as expected.
+:warning: Get my hands on a Mac to validate that Mac builds and icons function as expected.
 
 ## Common Questions
 ### "Network.loadNetworkResource failed." Errors
