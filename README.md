@@ -12,6 +12,10 @@ Please see this [Documentation](./docs/README.md) for specifics on:
 - Node dependancies
 - References/Inspirations
 
+## TODO
+
+:warning: Get my hands on a MAC to validate that MAC builds function as expected.
+
 ## Common Questions
 ### "Network.loadNetworkResource failed." Errors
 These errors will appear in the console if the Brower has "Enable JavaScript Source Maps" enabled.
