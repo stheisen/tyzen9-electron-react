@@ -1,5 +1,7 @@
 # Tyzen9 Electron & React Boilerplate (2023)
-![logo](./resources/images/logo.png width="100")
+<div style="text-align: center;">
+  <img src="./resources/images/logo.png" height="150">
+</div> 
 
 This is a very basic Electron & React Boilerplate that does NOT use Create-React-App (CRA). The advantage to this approach is that it gives the developer control over opinionated setups included with CRA.  
 
