@@ -149,7 +149,7 @@ function createWindow() {
     });
   });
 
-
+  // Open all URLs with set with target="_blank" externally, in the default browser
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     logger.verbose(`Open link in external default browser: {url}`);
     shell.openExternal(url);
