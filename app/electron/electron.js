@@ -75,9 +75,9 @@ function buildMenu() {
 function buildTrayMenu() {
   let tray;
   if (isLinux) {
-    tray = new Tray(path.resolve(__dirname, 'icon.png'));
+    tray = new Tray(path.resolve(__dirname, './trayIcon/icon.png'));
   } else {
-    tray = new Tray(path.resolve(__dirname, 'icon.ico'));
+    tray = new Tray(path.resolve(__dirname, './trayIcon/icon.ico'));
   }
 
   const contextMenu = Menu.buildFromTemplate([
